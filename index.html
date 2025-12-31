@@ -14,17 +14,17 @@
       text-align: left;
     }
 
-    
     /* Fixed width for Name */
-    .name-col {
-      width: 150px;  /* fixed width you choose */
+    .nama-col {
+      width: 150px;
     }
 
-    .tarik-col,
-    .kela-col {
-      white-space: nowrap; /* prevents line breaks, ensures widest content sets column */
+    /* Auto-size for Date and Class */
+    .tarikh-col,
+    .kelas-col {
+      white-space: nowrap;
     }
-    
+
     th {
       background: #f4f4f4;
     }
@@ -48,9 +48,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbw06zYABQzq6mVHdn5A8i7q
 
 function formatDate(dateString) {
   const d = new Date(dateString);
-
   return d.toLocaleDateString("en-GB"); 
-  // en-GB = DD/MM/YYYY
 }
 
 async function loadData() {
@@ -72,7 +70,7 @@ async function loadData() {
 }
 
 loadData();
-setInterval(loadData, 1000); // refresh every 1 second
+setInterval(loadData, 1000);
 </script>
 
 </body>
