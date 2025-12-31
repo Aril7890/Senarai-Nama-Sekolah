@@ -13,6 +13,19 @@
       padding: 6px;
       text-align: left;
     }
+
+    
+    /* Fixed width for Name */
+    .name-col {
+      width: 150px;  /* fixed width you choose */
+    }
+
+    .date-col,
+    .class-col {
+      width: auto;  /* or just omit width */
+      white-space: nowrap; /* prevents line breaks, ensures widest content sets column */
+    }
+    
     th {
       background: #f4f4f4;
     }
@@ -23,9 +36,9 @@
 <table id="dataTable">
   <thead>
     <tr>
-      <th>Tarikh</th>
-      <th>Nama</th>
-      <th>Kelas</th>
+      <th class="tarikh-col">Tarikh</th>
+      <th class="nama-col">Nama</th>
+      <th class="kelas-col">Kelas</th>
     </tr>
   </thead>
   <tbody></tbody>
@@ -51,9 +64,9 @@ async function loadData() {
   data.forEach(row => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${formatDate(row.Tarikh)}</td>
-      <td>${row.Nama}</td>
-      <td>${row.Kelas}</td>
+      <td class="tarikh-col">${formatDate(row.Tarikh)}</td>
+      <td class="nama-col">${row.Nama}</td>
+      <td class="kelas-col">${row.Kelas}</td>
     `;
     tbody.appendChild(tr);
   });
