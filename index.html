@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: left;
+    }
+    th {
+      background: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbw06zYABQzq6mVHdn5A8i7qY7ZJUqtIWspLEbKn4LxiPVi2z5jL7qWTFv10qlKQDHQ/exec";
+
+async function loadData() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
+
+  const tbody = document.querySelector("#dataTable tbody");
+  tbody.innerHTML = "";
+
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${row.date}</td>
+      <td>${row.name}</td>
+      <td>${row.class}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+loadData();
+setInterval(loadData, 1000); // refresh every 1 second
+</script>
+
+</body>
+</html>
