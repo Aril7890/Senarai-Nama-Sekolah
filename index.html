@@ -34,6 +34,13 @@
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbw06zYABQzq6mVHdn5A8i7qY7ZJUqtIWspLEbKn4LxiPVi2z5jL7qWTFv10qlKQDHQ/exec";
 
+function formatDate(dateString) {
+  const d = new Date(dateString);
+
+  return d.toLocaleDateString("en-GB"); 
+  // en-GB = DD/MM/YYYY
+}
+
 async function loadData() {
   const res = await fetch(API_URL);
   const data = await res.json();
@@ -44,7 +51,7 @@ async function loadData() {
   data.forEach(row => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${row.Tarikh}</td>
+      <td>${formatDate(row.Tarikh)}</td>
       <td>${row.Nama}</td>
       <td>${row.Kelas}</td>
     `;
