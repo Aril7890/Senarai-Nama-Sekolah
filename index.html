@@ -90,7 +90,16 @@ async function loadData() {
     tbody.appendChild(tr);
   });
 }
+function isToday(dateString) {
+  const d = new Date(dateString);
+  const today = new Date();
 
+  return (
+    d.getDate() === today.getDate() &&
+    d.getMonth() === today.getMonth() &&
+    d.getFullYear() === today.getFullYear()
+  );
+}
 loadData();
 setInterval(loadData, 1000);
 </script>
