@@ -64,7 +64,23 @@ async function loadData() {
   const tbody = document.querySelector("#dataTable tbody");
   tbody.innerHTML = "";
 
-  data.forEach(row => {
+  // Filter only today's data
+  const todayData = data.filter(row => isToday(row.Tarikh));
+
+  // If no one logged in today
+  if (todayData.length === 0) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td colspan="3" style="text-align:center; font-style:italic; color:#666;">
+        Tiada data
+      </td>
+    `;
+    tbody.appendChild(tr);
+    return;
+  }
+
+  // Otherwise, render rows
+  todayData.forEach(row => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td class="tarikh-col">${formatDate(row.Tarikh)}</td>
